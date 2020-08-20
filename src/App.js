@@ -12,7 +12,7 @@ function App() {
           Hi I am react's hello world.
         </p>
         <Person name="Ashish" age="25"/>
-        <Person name="Girish" age="25"/>
+        <Person name="Girish" age="25"> I am Single </Person>
         <a
           className="App-link"
           href="https://reactjs.org"
