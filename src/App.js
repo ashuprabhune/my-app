@@ -34,14 +34,6 @@ function App() {
         <div> This is from functional state</div>
         <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
         <Person name = {personsState.persons[1].name} age = {personsState.persons[1].age} />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <NewComponent/>
       </header>
     </div>
