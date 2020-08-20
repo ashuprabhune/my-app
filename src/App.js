@@ -11,7 +11,8 @@ function App() {
         <p>
           Hi I am react's hello world.
         </p>
-        <Person />
+        <Person name="Ashish" age="25"/>
+        <Person name="Girish" age="25"/>
         <a
           className="App-link"
           href="https://reactjs.org"
