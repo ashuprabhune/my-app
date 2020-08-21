@@ -23,6 +23,12 @@ function App() {
   }
 
   console.log(personsState);
+  const style = {
+    backgroundColor: 'white',
+    font:'inherit',
+    border: '1px solid blue',
+    padding: '8px'
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -30,7 +36,7 @@ function App() {
         <p>
           Hi I ' am react's hello world.
         </p>
-        <button onClick = {switchNameFuncHandler}>Swtich Name</button>
+        <button style = {style} onClick = {switchNameFuncHandler}>Swtich Name</button>
         <div> This is from functional state</div>
         <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
         <Person name = {personsState.persons[1].name} age = {personsState.persons[1].age} />
@@ -42,6 +48,7 @@ function App() {
 
 
 class NewComponent extends Component{
+
   state = {
     persons:[
       {name : 'Ashish', age : "25"},
@@ -51,19 +58,33 @@ class NewComponent extends Component{
   switchNameHandler = () => {
     this.setState({
       persons:[
-        {name : 'Ashish Prabhune', age : "30"},
+        {name : 'Ashish Prabhune', age : "25"},
         {name : 'Girish', age : "26"}
+      ]
+    });
+  }
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons:[
+        {name : 'Ashish', age : "25"},
+        {name : event.target.value, age : "26"}
       ]
     });
   }
 
   render(){
+    const style = {
+      backgroundColor: 'white',
+      font:'inherit',
+      border: '1px solid blue',
+      padding: '8px'
+    };
     return(
       <div>
       <p> I'am </p>
-      <button onClick = {this.switchNameHandler}>Swtich Name</button>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}> I am Single </Person>
+      <button style = {style} onClick = {this.switchNameHandler}>Swtich Name</button>
+      <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+      <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changename = {this.nameChangedHandler}> I am Single </Person>
       </div>
     )
   }
