@@ -12,23 +12,40 @@ function App() {
     ],
     otherState : "Hello"
   })
-
+  const [showPersonsState, setShowPersonState] = useState({
+    showPersons : false
+  })
   const switchNameFuncHandler = () =>{
     setPersonsState({
       persons:[
         {name : 'Ajit BusNaik', age : "25"},
         {name : 'Puki Datar', age : "26"}
-      ]
+      ],
     })
   }
-
-  console.log(personsState);
+  const togglePersonsHandler = () =>{
+    const showStatus = showPersonsState.showPersons
+    setShowPersonState({
+      showPersons : !showStatus
+    })
+    console.log(showPersonsState);
+  }
   const style = {
     backgroundColor: 'white',
     font:'inherit',
     border: '1px solid blue',
     padding: '8px'
   };
+  let persons = null;
+  if(showPersonsState.showPersons){
+    persons = (
+      <div>
+        <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
+        <Person name = {personsState.persons[1].name} age = {personsState.persons[1].age} />
+      </div>
+    )
+  }
+  console.log(persons);
   return (
     <div className="App">
       <header className="App-header">
@@ -36,10 +53,9 @@ function App() {
         <p>
           Hi I ' am react's hello world.
         </p>
-        <button style = {style} onClick = {switchNameFuncHandler}>Swtich Name</button>
+        <button style = {style} onClick = {togglePersonsHandler}>Swtich Name</button>
         <div> This is from functional state</div>
-        <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
-        <Person name = {personsState.persons[1].name} age = {personsState.persons[1].age} />
+        {persons}
         <NewComponent/>
       </header>
     </div>
@@ -53,7 +69,8 @@ class NewComponent extends Component{
     persons:[
       {name : 'Ashish', age : "25"},
       {name : 'Girish', age : "26"}
-    ]
+    ],
+    showPersons : false
   }
   switchNameHandler = () => {
     this.setState({
@@ -72,6 +89,15 @@ class NewComponent extends Component{
     });
   }
 
+  togglePersonsHandler = () =>{
+    const showStatus = this.state.showPersons;
+    this.setState(
+      {showPersons : !showStatus}
+    )
+  }
+
+
+
   render(){
     const style = {
       backgroundColor: 'white',
@@ -79,12 +105,22 @@ class NewComponent extends Component{
       border: '1px solid blue',
       padding: '8px'
     };
+
+    let persons = null;
+    if(this.state.showPersons){
+      persons = (
+        <div>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changename = {this.nameChangedHandler}> I am Single </Person>
+        </div>
+      )
+    }
+
     return(
       <div>
-      <p> I'am </p>
-      <button style = {style} onClick = {this.switchNameHandler}>Swtich Name</button>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changename = {this.nameChangedHandler}> I am Single </Person>
+        <p> I'am </p>
+        <button style = {style} onClick = {this.togglePersonsHandler}>Toggle Button</button>
+        {persons}
       </div>
     )
   }
