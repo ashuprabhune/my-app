@@ -96,6 +96,15 @@ class NewComponent extends Component{
     )
   }
 
+  deletePerson = (index) => {
+    const personCopy = this.state.persons.slice()
+    personCopy.splice(index,1)
+    this.setState({
+      persons : personCopy
+    })
+    console.log(this.state.persons);
+
+  }
 
 
   render(){
@@ -110,8 +119,15 @@ class NewComponent extends Component{
     if(this.state.showPersons){
       persons = (
         <div>
-          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changename = {this.nameChangedHandler}> I am Single </Person>
+          {
+            this.state.persons.map((person,index) => {
+              return <Person
+                key= {person.name}
+                name={person.name}
+                age={person.age}
+                click= {() => this.deletePerson(index)}/>
+            })
+          }
         </div>
       )
     }
