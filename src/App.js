@@ -65,13 +65,13 @@ function App() {
 }
 
 const StyledButton = styled.button`
-      background-color: green;
+      background-color: ${props => props.alt ? 'red' : 'green'};
       color:white;
       font:inherit;
       border: 1px solid blue;
       padding: 8px;
       &:hover{
-        background-color: lightgreen;
+        background-color: ${props => props.alt ? 'salmon' : 'red'};
         color:black;
       }
 `
@@ -153,7 +153,7 @@ class NewComponent extends Component{
     return(
       <div>
         <p className={classes.join(' ')}> Hello from class component </p>
-      <StyledButton onClick = {this.togglePersonsHandler}>Toggle Button</StyledButton>
+      <StyledButton alt={this.state.showPersons} onClick = {this.togglePersonsHandler}>Toggle Button</StyledButton>
         {persons}
       </div>
     );
