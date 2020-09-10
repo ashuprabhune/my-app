@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import  { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.module.css'
+import Aux from '../hoc/Auxilliary'
+import withClass from '../hoc/withClass'
 
 import NewComponent from '../components/NewComponent/NewComponent'
 import styled from 'styled-components'
@@ -49,16 +51,18 @@ function App() {
       </div>
     )
   }*/
+  console.log(classes);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+    <Aux>
+      <header className={classes.Appheader}>
+        <img src={logo} className={classes.Applogo} alt="logo" />
         <p>
           Hi I ' am react's hello world.
         </p>
         <NewComponent/>
       </header>
-    </div>
+    </Aux>
   );
 }
 
@@ -66,4 +70,4 @@ function App() {
 
 
 
-export default App;
+export default withClass(App,classes.App);
